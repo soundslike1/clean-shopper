@@ -9,7 +9,7 @@ You are receiving project input in some form -- a PRD, a brief, bullet points, c
 
 Process the input carefully. Map every relevant piece of information to the appropriate section below. Do not invent information that is not present in the input. Do not make assumptions to fill gaps -- instead, collect unresolved gaps in the Gaps section at the end.
 
-Produce the following eight sections in order. For each section, extract and synthesize the relevant information from the input. Write in clear, direct prose. If a section cannot be completed because the information is not present in the input, write "Not defined in source material" and add it to the Gaps section.
+Produce the following nine sections in order. For each section, extract and synthesize the relevant information from the input. Write in clear, direct prose. If a section cannot be completed because the information is not present in the input, write "Not defined in source material" and add it to the Gaps section.
 
 ---
 
@@ -18,6 +18,8 @@ Produce the following eight sections in order. For each section, extract and syn
 **Date:** [Today's date]
 **Source:** [Brief description of what input was provided]
 **Version:** 1.0
+**Design Owner:** [Extract from input, or "Not stated"]
+**Product Owner:** [Extract from input, or "Not stated"]
 
 ---
 
@@ -27,26 +29,29 @@ Produce the following eight sections in order. For each section, extract and syn
 ## 2. ICP (Ideal Customer Profile)
 [Who specifically this is for, described behaviorally. What are they currently doing? What do they already know or use? What is their relationship to the problem? Avoid demographics -- focus on behavior and context.]
 
-## 3. Pain Points
+## 3. User Research Insights
+[Any existing research, data, quotes, usability findings, or validated assumptions present in the input. If none are provided, write "Not defined in source material" and add to Gaps.]
+
+## 4. Pain Points
 [What the user currently experiences that this product addresses. Specific friction, not assumed frustration. What fails them today?]
 
-## 4. Proposed Solution
+## 5. Proposed Solution
 [What the product does, described at the level of user actions. What can a user do with this product? List the core actions, not the capabilities that enable them.]
 
-## 5. Success Metrics
+## 6. Success Metrics
 [How we know this is working. Quantitative where possible. What does a good outcome look like and how would it be measured?]
 
-## 6. Design Constraints
+## 7. Design Constraints
 Platform: [Web / Mobile / Conversational / Agentic / Other]
 Geography: [Where is this launching? Any regional restrictions?]
 Accessibility: [Any stated accessibility requirements]
 Technical: [Stack, integrations, APIs, or infrastructure constraints mentioned]
 Other: [Any other constraints that affect the design space]
 
-## 7. Open Questions
+## 8. Open Questions
 [Decisions not yet made. Assumptions that need validation. Things the input left unresolved. Number each one.]
 
-## 8. Gaps
+## 9. Gaps
 [Everything that could not be mapped because the input did not contain it. For each gap, name the missing section and explain why it matters for starting design work. Number each one.]
 
 ---
