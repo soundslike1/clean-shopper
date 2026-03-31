@@ -1,0 +1,61 @@
+export const tokens = {
+  colors: {
+    primary: {
+      DEFAULT: '#4E7A5C',
+      light:   '#7AA68A',
+      dark:    '#325249',
+    },
+    secondary: '#F5EFE4',
+    accent:    '#C07A3A',
+    success:   '#4E7A5C',
+    warning:   '#C07A3A',
+    error:     '#B55249',
+    neutral: {
+      50:  '#FAFAF6',
+      100: '#F5EFE4',
+      200: '#E5DDD0',
+      400: '#8B949E',
+      600: '#6B5F52',
+      900: '#2B2018',
+    },
+  },
+
+  fontFamily: {
+    sans: ['DM Sans', 'sans-serif'],
+  },
+
+  fontSize: {
+    display: { size: '48px', lineHeight: '1.1', fontWeight: '700' },
+    h1:      { size: '36px', lineHeight: '1.2', fontWeight: '600' },
+    h2:      { size: '28px', lineHeight: '1.25', fontWeight: '600' },
+    h3:      { size: '22px', lineHeight: '1.3', fontWeight: '600' },
+    h4:      { size: '18px', lineHeight: '1.35', fontWeight: '500' },
+    body:    { size: '16px', lineHeight: '1.65', fontWeight: '400' },
+    small:   { size: '14px', lineHeight: '1.5', fontWeight: '400' },
+    micro:   { size: '12px', lineHeight: '1.4', fontWeight: '400' },
+  },
+
+  spacing: {
+    xs:    '4px',
+    sm:    '8px',
+    md:    '16px',
+    lg:    '24px',
+    xl:    '40px',
+    '2xl': '64px',
+    '3xl': '96px',
+    '4xl': '128px',
+  },
+
+  borderRadius: {
+    sm:   '4px',
+    md:   '10px',
+    lg:   '18px',
+    full: '9999px',
+  },
+
+  boxShadow: {
+    sm: '0 1px 3px rgba(43, 32, 24, 0.06), 0 1px 2px rgba(43, 32, 24, 0.04)',
+    md: '0 4px 14px rgba(43, 32, 24, 0.09), 0 2px 4px rgba(43, 32, 24, 0.05)',
+    lg: '0 20px 48px rgba(43, 32, 24, 0.13), 0 8px 16px rgba(43, 32, 24, 0.06)',
+  },
+}
