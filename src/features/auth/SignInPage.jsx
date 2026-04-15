@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Button from '../../components/Button'
 import InputField from '../../components/InputField'
-import { signIn } from '../../lib/api/auth'
+import { signIn, resetPassword } from '../../lib/api/auth'
 
 export default function SignInPage({ onNavigateToSignUp, onSuccess }) {
   const [email, setEmail] = useState('')
@@ -9,6 +9,7 @@ export default function SignInPage({ onNavigateToSignUp, onSuccess }) {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [formError, setFormError] = useState('')
+  const [resetMessage, setResetMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   async function handleSubmit(e) {
@@ -36,6 +37,21 @@ export default function SignInPage({ onNavigateToSignUp, onSuccess }) {
       setFormError(err.message)
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  async function handleForgotPassword() {
+    setFormError('')
+    setResetMessage('')
+    if (!email) {
+      setFormError('Enter your email address above, then click Forgot password.')
+      return
+    }
+    try {
+      await resetPassword(email)
+      setResetMessage('Check your email for a password reset link.')
+    } catch (err) {
+      setFormError(err.message)
     }
   }
 
@@ -69,8 +85,19 @@ export default function SignInPage({ onNavigateToSignUp, onSuccess }) {
             disabled={isLoading}
           />
 
+          <button
+            type="button"
+            onClick={handleForgotPassword}
+            className="text-small text-primary hover:underline self-start"
+          >
+            Forgot password?
+          </button>
+
           {formError && (
             <p className="text-small text-error">{formError}</p>
+          )}
+          {resetMessage && (
+            <p className="text-small text-success">{resetMessage}</p>
           )}
 
           <Button type="submit" variant="primary" isLoading={isLoading}>

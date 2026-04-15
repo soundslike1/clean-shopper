@@ -10,8 +10,11 @@ export default function App() {
   const [page, setPage] = useState(null)
 
   useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setPage(session ? 'app' : 'signin')
+    })
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'INITIAL_SESSION') setPage(session ? 'app' : 'signin')
       if (event === 'SIGNED_IN') setPage('app')
       if (event === 'SIGNED_OUT') setPage('signin')
     })
