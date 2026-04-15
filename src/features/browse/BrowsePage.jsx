@@ -44,12 +44,13 @@ export default function BrowsePage() {
 
   return (
     <main className="min-h-screen bg-neutral-50 px-lg py-xl">
-      <h1 className="text-h1 text-neutral-900 mb-xl">Browse Products</h1>
+      <div className="max-w-5xl mx-auto">
+      <h1 className="text-h1 font-serif text-neutral-900 mb-xl">Browse Products</h1>
 
       <div className="flex flex-col gap-xl">
         {categories.map((category) => (
           <section key={category}>
-            <h2 className="text-h2 text-neutral-900 mb-md">{category}</h2>
+            <h2 className="text-h2 font-serif text-neutral-900 mb-md">{category}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
               {products.filter((p) => p.category === category).map((product) => (
                 <div key={product.id} className="flex flex-col gap-sm">
@@ -70,6 +71,7 @@ export default function BrowsePage() {
             </div>
           </section>
         ))}
+      </div>
       </div>
     </main>
   )
