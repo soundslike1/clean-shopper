@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import ProductCard from '../../components/ProductCard'
 import Button from '../../components/Button'
 import { getProducts } from '../../lib/api/products'
+import { getSavedProductIds, saveProduct, unsaveProduct } from '../../lib/api/saved-products'
 
 export default function BrowsePage() {
   const [products, setProducts] = useState([])
@@ -10,18 +11,31 @@ export default function BrowsePage() {
   const [savedIds, setSavedIds] = useState(new Set())
 
   useEffect(() => {
-    getProducts()
-      .then(setProducts)
+    Promise.all([getProducts(), getSavedProductIds()])
+      .then(([products, savedIds]) => {
+        setProducts(products)
+        setSavedIds(savedIds)
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false))
   }, [])
 
-  function toggleSave(id) {
+  async function toggleSave(id) {
+    const isSaved = savedIds.has(id)
     setSavedIds((prev) => {
       const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
+      isSaved ? next.delete(id) : next.add(id)
       return next
     })
+    try {
+      isSaved ? await unsaveProduct(id) : await saveProduct(id)
+    } catch {
+      setSavedIds((prev) => {
+        const next = new Set(prev)
+        isSaved ? next.add(id) : next.delete(id)
+        return next
+      })
+    }
   }
 
   const categories = [...new Set(products.map((p) => p.category))]
