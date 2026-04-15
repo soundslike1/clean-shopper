@@ -44,9 +44,9 @@ export default function SignUpPage({ onNavigateToSignIn, onSuccess }) {
 
   return (
     <main className="min-h-screen bg-neutral-50 flex items-center justify-center px-md">
-      <div className="w-full max-w-md bg-secondary rounded-lg shadow-md p-2xl flex flex-col gap-lg">
+      <div className="w-full max-w-md bg-secondary rounded-lg shadow-md p-xl sm:p-2xl flex flex-col gap-lg">
         <header className="flex flex-col gap-xs">
-          <h1 className="text-h2 text-neutral-900">Create your account</h1>
+          <h1 className="text-h2 font-serif text-neutral-900">Create your account</h1>
           <p className="text-body text-neutral-600">Start building your clean product library.</p>
         </header>
 
