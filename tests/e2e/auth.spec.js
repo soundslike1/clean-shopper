@@ -29,7 +29,7 @@ test.describe('authentication flow', () => {
     // 6. Sign in with the same credentials
     await page.getByLabel('Email').fill(email)
     await page.getByLabel('Password').fill(password)
-    await page.getByRole('button', { name: 'Sign in' }).click()
+    await page.getByRole('button', { name: 'Log in' }).click()
 
     // 7. Lands on browse page after sign-in
     await expect(page.getByRole('heading', { name: 'Browse Products' })).toBeVisible({ timeout: 8000 })

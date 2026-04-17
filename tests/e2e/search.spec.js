@@ -9,7 +9,7 @@ async function signIn(page) {
   await expect(page.getByRole('heading', { name: 'Welcome back' })).toBeVisible({ timeout: 5000 })
   await page.getByLabel('Email').fill(email)
   await page.getByLabel('Password').fill(password)
-  await page.getByRole('button', { name: 'Sign in' }).click()
+  await page.getByRole('button', { name: 'Log in' }).click()
   await expect(page.getByRole('heading', { name: 'Browse Products' })).toBeVisible({ timeout: 10000 })
 }
 

@@ -101,7 +101,7 @@ export default function SignInPage({ onNavigateToSignUp, onSuccess }) {
           )}
 
           <Button type="submit" variant="primary" isLoading={isLoading}>
-            Sign in
+            Log in
           </Button>
         </form>
 
