@@ -8,6 +8,7 @@ export default {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      white: '#ffffff',
       primary: {
         DEFAULT: '#4E7A5C',
         light: '#7AA68A',
@@ -29,6 +30,7 @@ export default {
     },
     fontFamily: {
       sans: ['DM Sans', 'sans-serif'],
+      serif: ['DM Serif Display', 'serif'],
     },
     fontSize: {
       display: ['48px', { lineHeight: '1.1', fontWeight: '700' }],

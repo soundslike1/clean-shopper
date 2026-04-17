@@ -4,7 +4,7 @@ const NAV_LINKS = [
   { label: 'Shopping List', route: '/list' },
 ]
 
-export default function NavBar({ activeRoute }) {
+export default function NavBar({ activeRoute, onNavigate, onSignOut }) {
   return (
     <nav className="
       bg-neutral-100
@@ -24,6 +24,7 @@ export default function NavBar({ activeRoute }) {
             <li key={route}>
               <a
                 href={route}
+                onClick={(e) => { e.preventDefault(); onNavigate?.(route) }}
                 className={`
                   text-small transition-colors duration-150
                   ${isActive
@@ -37,6 +38,18 @@ export default function NavBar({ activeRoute }) {
             </li>
           )
         })}
+
+        {onSignOut && (
+          <li>
+            <button
+              type="button"
+              onClick={onSignOut}
+              className="text-small text-neutral-600 hover:text-primary transition-colors duration-150"
+            >
+              Sign out
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   )

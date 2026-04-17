@@ -160,6 +160,7 @@ All visual values reference Tailwind theme classes from `tailwind.config.js`. No
 | Prop | Type | Required | Notes |
 |---|---|---|---|
 | `activeRoute` | string | yes | Current route path, used to set active link style |
+| `onNavigate` | function | no | Called with the route string when a nav link is clicked; prevents full-page navigation |
 
 ### Visual Structure
 ```
@@ -331,3 +332,105 @@ All visual values reference Tailwind theme classes from `tailwind.config.js`. No
 - The `body` should tell the user what to do next — never leave them with a dead end.
 - Do not add decorative illustrations in V1 — text and optional button only.
 - `py-3xl` vertical padding is intentional — empty states need breathing room to avoid feeling broken.
+
+---
+
+## TabBar
+
+**Purpose:** Horizontal tab strip for switching between named content sections; used on the Library page to filter saved products by category.
+
+### Props
+| Prop | Type | Required | Notes |
+|---|---|---|---|
+| `tabs` | `{ label: string, value: string }[]` | yes | Ordered list of tab definitions |
+| `activeTab` | string | yes | `value` of the currently active tab |
+| `onChange` | function | yes | Called with the tab `value` when a tab is clicked |
+
+### Visual Structure
+```
+<div>  flex border-b border-neutral-200
+
+  <button> each tab   px-md py-sm text-small
+    Default:  text-neutral-600
+    Active:   text-primary font-medium border-b-2 border-primary -mb-px
+    Hover:    text-primary
+```
+
+### States
+| State | Treatment |
+|---|---|
+| Default | `text-neutral-600` |
+| Active | `text-primary font-medium` with `border-b-2 border-primary`, `-mb-px` to overlap the container border |
+| Hover | `text-primary` |
+
+### Usage Rules
+- Use only for switching views within a single page — not for app-level navigation (use `NavBar` for that).
+- Always provide at least two tabs.
+- The active tab underline uses `-mb-px` to sit flush against the container border below it.
+
+---
+
+## IngredientBadge
+
+**Purpose:** Compact color-coded pill label for a single ingredient's safety rating, used inside `IngredientRow` on the Product Detail page.
+
+### Props
+| Prop | Type | Required | Notes |
+|---|---|---|---|
+| `rating` | `'safe' \| 'caution' \| 'avoid'` | yes | Controls background color and label text |
+
+### Visual Structure
+```
+<span>  rounded-full text-micro font-medium text-neutral-50
+        px-sm py-xs
+
+  rating="safe"    bg-success   label: "Safe"
+  rating="caution" bg-warning   label: "Caution"
+  rating="avoid"   bg-error     label: "Avoid"
+```
+
+### States
+| State | Treatment |
+|---|---|
+| Default | Solid semantic background, `text-neutral-50` label |
+
+### Usage Rules
+- Use only inside `IngredientRow` — do not use on product cards (use `SafetyBadge` there).
+- Label text is always sentence-case.
+- Do not repurpose semantic colors for any other purpose on the detail page.
+
+---
+
+## IngredientRow
+
+**Purpose:** Displays a single ingredient entry — name, safety badge, and plain-language explanation — as a list item inside the Product Detail view.
+
+### Props
+| Prop | Type | Required | Notes |
+|---|---|---|---|
+| `name` | string | yes | Ingredient name as it appears on the label |
+| `rating` | `'safe' \| 'caution' \| 'avoid'` | yes | Passed to `IngredientBadge` |
+| `note` | string | yes | 1–2 sentence plain-language explanation of the rating |
+
+### Visual Structure
+```
+<li>  flex flex-col gap-xs
+      py-md border-b border-neutral-200
+      last:border-none
+
+  <div>  flex items-center justify-between gap-sm
+    <span>  text-h4 text-neutral-900      — ingredient name
+    <IngredientBadge rating={rating} />
+
+  <p>  text-body text-neutral-600         — plain-language note
+```
+
+### States
+| State | Treatment |
+|---|---|
+| Default | Static display — no interactive states |
+
+### Usage Rules
+- Always render inside a `<ul>` with `list-none`.
+- The bottom border separates rows; the last row has no border (`last:border-none`).
+- Never truncate the `note` — ingredient explanations must be fully readable.

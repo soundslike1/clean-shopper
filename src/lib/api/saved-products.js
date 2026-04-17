@@ -16,6 +16,14 @@ export async function saveProduct(productId) {
   if (error) throw new Error(error.message)
 }
 
+export async function getSavedProducts() {
+  const { data, error } = await supabase
+    .from('saved_products')
+    .select('product_id, products(id, name, category, description, safety_score)')
+  if (error) throw new Error(error.message)
+  return data.map((r) => r.products).filter(Boolean)
+}
+
 export async function unsaveProduct(productId) {
   const { error } = await supabase
     .from('saved_products')

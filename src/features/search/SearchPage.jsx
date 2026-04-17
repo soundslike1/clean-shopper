@@ -8,7 +8,7 @@ import { getSavedProductIds, saveProduct, unsaveProduct } from '../../lib/api/sa
 
 const STATES = { IDLE: 'idle', LOADING: 'loading', RESULTS: 'results', EMPTY: 'empty', ERROR: 'error' }
 
-export default function SearchPage() {
+export default function SearchPage({ onProductClick }) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [status, setStatus] = useState(STATES.IDLE)
@@ -92,6 +92,7 @@ export default function SearchPage() {
                 name={product.name}
                 safetyScore={product.safety_score}
                 category={product.category}
+                onClick={() => onProductClick?.(product)}
                 description={product.description}
               />
               <Button

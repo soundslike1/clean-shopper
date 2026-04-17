@@ -10,7 +10,7 @@ export default function InputField({
   disabled = false,
 }) {
   const inputBase =
-    'bg-neutral-100 text-body text-neutral-900 placeholder:text-neutral-400 rounded-md px-md py-sm border focus:outline-none focus:ring-2 w-full disabled:opacity-50 disabled:cursor-not-allowed'
+    'bg-white text-body text-neutral-900 placeholder:text-neutral-400 rounded-md px-md py-sm border focus:outline-none focus:ring-2 w-full disabled:opacity-50 disabled:cursor-not-allowed'
   const inputState = error
     ? 'border-error ring-2 ring-error'
     : 'border-neutral-200 focus:ring-primary'

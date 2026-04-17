@@ -5,9 +5,15 @@ import NavBar from './components/NavBar'
 import SignUpPage from './features/auth/SignUpPage'
 import SignInPage from './features/auth/SignInPage'
 import BrowsePage from './features/browse/BrowsePage'
+import SearchPage from './features/search/SearchPage'
+import ShoppingListPage from './features/list/ShoppingListPage'
+import LibraryPage from './features/library/LibraryPage'
+import ProductDetailPage from './features/product/ProductDetailPage'
 
 export default function App() {
   const [page, setPage] = useState(null)
+  const [route, setRoute] = useState('/')
+  const [selectedProduct, setSelectedProduct] = useState(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -16,7 +22,7 @@ export default function App() {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') setPage('app')
-      if (event === 'SIGNED_OUT') setPage('signin')
+      if (event === 'SIGNED_OUT') { setPage('signin'); setRoute('/'); setSelectedProduct(null) }
     })
 
     return () => subscription.unsubscribe()
@@ -42,10 +48,27 @@ export default function App() {
     )
   }
 
+  if (selectedProduct) {
+    return (
+      <>
+        <NavBar activeRoute={route} onNavigate={setRoute} onSignOut={signOut} />
+        <ProductDetailPage
+          product={selectedProduct}
+          onBack={() => setSelectedProduct(null)}
+        />
+      </>
+    )
+  }
+
   return (
     <>
-      <NavBar onSignOut={signOut} />
-      <BrowsePage />
+      <NavBar activeRoute={route} onNavigate={setRoute} onSignOut={signOut} />
+      {route === '/search'  && <SearchPage  onProductClick={setSelectedProduct} />}
+      {route === '/list'    && <ShoppingListPage onProductClick={setSelectedProduct} />}
+      {route === '/library' && <LibraryPage onProductClick={setSelectedProduct} />}
+      {route !== '/search' && route !== '/list' && route !== '/library' && (
+        <BrowsePage onProductClick={setSelectedProduct} />
+      )}
     </>
   )
 }

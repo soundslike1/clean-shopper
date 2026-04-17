@@ -40,3 +40,4 @@ Single-user app. No authentication in V1. Local state plus Supabase for data per
 - Prompt optimizer skill: See /.claude/commands/prompt-optimizer.md -- use /prompt-optimizer to evaluate and refine instructions before sending them
 - Design system: See /docs/design-system.md — follow these visual specifications for all UI work. Do not hardcode colors, font sizes, spacing, or shadows.
 - Tailwind config: See tailwind.config.js for design tokens as Tailwind theme extensions. Always use theme classes, never hardcode values.
+- Ingredient Deep-Dive feature spec: See /docs/feature-spec-Ingredient Deep-Dive.md — full spec for the ingredient detail feature including components, tokens, and acceptance criteria.
